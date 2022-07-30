@@ -1,6 +1,6 @@
 import React  from 'react'
 import { useSelector ,useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom"
 import { resetCameraImage, selectCameraImage } from '../features/cameraSlice'
 import TimerIcon from '@mui/icons-material/Timer';
 import CloseIcon from '@mui/icons-material/Close';
@@ -12,8 +12,13 @@ import TextFieldsIcon from '@mui/icons-material/TextFields';
 import CreateIcon from '@mui/icons-material/Create';
 import NoteIcon from '@mui/icons-material/Note';
 import SendIcon from '@mui/icons-material/Send';
+import {v4 as uuid} from 'uuid'
+import { db, storage } from "../firebase";
+import firebase from "firebase";
+// import { selectUser } from "../features/appSlice";
 import './Preview.css'
 import { useEffect } from 'react'
+// import { upload } from '@testing-library/user-event/dist/types/utility';
 function Preview() {
     const cameraImage= useSelector(selectCameraImage)
     const navigate = useNavigate()
@@ -26,6 +31,29 @@ function Preview() {
     const closePreview = ()=>{
         dispatch(resetCameraImage())
         // navigate
+    }
+    const sendPost =()=>{
+        const id = uuid()
+        const upLoadTask = storage.ref(`posts/${id}`).putString(cameraImage,"data_url")
+        upLoadTask.on("state_changed",null,(error)=>
+        //Error function
+        {console.log(error)
+        },
+        //complete function
+        ()=>{
+            storage.ref("posts").child(id).getDownloadURL()
+            .then((url)=>{
+                db.collection( 'posts').add({
+                    imageURL:url,
+                    username:'Shafia Ansar',
+                    read: false,
+                    //profilePic
+                    timestamp:firebase.firestore.FieldValue.serverTimestamp()
+                })
+                navigate('/chats')
+            })
+        }
+        )
     }
   return (
     <div className='preview'>
@@ -41,7 +69,7 @@ function Preview() {
         
         </div>
         <img src={cameraImage} alt=""/>
-        <div className='preview_footer'>
+        <div  onClick={sendPost}className='preview_footer'>
             <h2>Send Now</h2>
             <SendIcon fontSize="small" className='preview_sendIcon'/>
         </div>

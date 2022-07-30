@@ -15,6 +15,7 @@ function App() {
         <Routes>
           <Route  path="/preview" element={<Preview/>}/>
           <Route exact path="/" element={<WebcamCapture/>}/>
+          <Route exact path="/chats" element={<h1>chats</h1>}/>
         </Routes>
       </div>
     </Router>
