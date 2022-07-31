@@ -13,9 +13,10 @@ function App() {
 <Router>
       <div className='app_body'>
         <Routes>
+          <Route path=''/>
           <Route  path="/preview" element={<Preview/>}/>
           <Route exact path="/" element={<WebcamCapture/>}/>
-          <Route exact path="/chats" element={<h1>chats</h1>}/>
+          <Route exact path="/chats" element={<Chats/>}/>
         </Routes>
       </div>
     </Router>
