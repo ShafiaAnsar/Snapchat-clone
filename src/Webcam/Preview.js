@@ -15,12 +15,13 @@ import SendIcon from '@mui/icons-material/Send';
 import {v4 as uuid} from 'uuid'
 import { db, storage } from "../firebase";
 import firebase from "firebase";
-// import { selectUser } from "../features/appSlice";
+import { selectUser } from "../features/appSlice";
 import './Preview.css'
 import { useEffect } from 'react'
 // import { upload } from '@testing-library/user-event/dist/types/utility';
 function Preview() {
     const cameraImage= useSelector(selectCameraImage)
+    const user = useSelector(selectUser)
     const navigate = useNavigate()
     const dispatch = useDispatch()
     useEffect(() => {
@@ -47,7 +48,7 @@ function Preview() {
                     imageURL:url,
                     username:'Shafia Ansar',
                     read: false,
-                    //profilePic
+                    profilePic:user.profilePic,
                     timestamp:firebase.firestore.FieldValue.serverTimestamp()
                 })
                 navigate('/chats')

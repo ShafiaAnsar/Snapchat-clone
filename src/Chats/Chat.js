@@ -19,9 +19,9 @@ function Chat({id,profilePic,username,timestamp,imageUrl,read}) {
 
             },{merge:true}
             )
-            navigate( '/chatsview',{replace:true})
+            navigate( '/chatsview')
             // // Navigate(to'/chatsview')
-            // console.log("open running")
+            // console.loz("open running")
         }
     }
   return (
