@@ -17,7 +17,7 @@ export const appSlice = createSlice({
     selectImage: (state, action) => {
       state.selectedImage = action.payload;
     },
-    resetImage: (state, action) => {
+    resetImage: (state) => {
       state.selectedImage = null;
     },
   },

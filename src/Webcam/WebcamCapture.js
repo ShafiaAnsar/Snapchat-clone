@@ -18,7 +18,7 @@ function WebcamCapture() {
 
   const capture = useCallback(()=>{
     const imageSrc=webcamRef.current.getScreenshot()
-    console.log(imageSrc)
+  
     dispatch(setCameraImage(imageSrc))
     navigate('/preview')
   },[webcamRef,dispatch,navigate])
@@ -32,7 +32,8 @@ function WebcamCapture() {
         width={videoConstraints.width}
         videoConstraints= {videoConstraints}
         />
-    <RadioButtonUncheckedIcon                 className='webcamCapture_button'
+    <RadioButtonUncheckedIcon 
+     className='webcamCapture_button'
       onClick={capture}
       fontSize='large'/>
      </div>
