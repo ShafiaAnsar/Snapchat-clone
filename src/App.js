@@ -26,7 +26,7 @@ useEffect(() => {
     }
     else{dispatch(logout())}
   }))
-}, []);
+}, [dispatch]);
   return (
     <div className="App">
 
@@ -41,7 +41,7 @@ useEffect(() => {
           <Routes>
             <Route  path="/" element={<WebcamCapture/>}/>
             <Route  path="/chats" element={<Chats/>}/>
-            <Route path="/chatsview" element={<ChatView/>}/>
+            <Route exact path="/chatsview" element={<ChatView/>}/>
             <Route  path="/preview" element={<Preview/>}/>
             <Route path='/login' element ={<Login/>}/>
          

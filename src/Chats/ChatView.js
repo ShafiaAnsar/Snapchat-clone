@@ -10,15 +10,17 @@ const ChatView =()=> {
     const exit =()=>{
       navigate ('/chats')
     }
-    useEffect(() => {
-      if(!selectedImage){
-        exit()
-      }
-    }, [selectedImage,exit]);
+    // useEffect(() => {
+    //   if(!selectedImage){
+    //     exit()
+    //   }
+    // }, [selectedImage,exit]);
     
   return (
     <div  className='chatView'>
-        <img src={selectedImage} onClick={exit} alt= ''/>
+        <img src={selectedImage}
+        // src='https://images.pexels.com/photos/3792581/pexels-photo-3792581.jpeg?auto=compress&cs=tinysrgb&w=400'
+         onClick={exit} alt= ''/>
     <div className ='chatView_timer'> <CountdownCircleTimer
     isPlaying
     duration={10}
@@ -36,7 +38,8 @@ const ChatView =()=> {
   return remainingTime;
 }}
 
-    </CountdownCircleTimer></div>
+    </CountdownCircleTimer>
+  </div>
    
     </div>
   )

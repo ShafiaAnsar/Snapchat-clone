@@ -10,15 +10,15 @@ import { db } from '../firebase';
 function Chat({id,profilePic,username,timestamp,imageUrl,read}) {
     const dispatch= useDispatch()
     const navigate = useNavigate()
-    const open =()=>{
-        
-        if(!read){
-            dispatch(selectImage(imageUrl))
-            db.collection("posts").doc(id).set({
-                read:true,
-
-            },{merge:true}
-            )
+    const open = () => {
+        if (!read) {
+          dispatch(selectImage(imageUrl));
+          db.collection("posts").doc(id).set(
+            {
+              read: true,
+            },
+            { merge: true }
+          );
             navigate( '/chatsview')
             // // Navigate(to'/chatsview')
             // console.loz("open running")
