@@ -11,7 +11,7 @@ function Login() {
     .then(result =>{
       dispatch(login({
         username: result.user.displayName,
-        profilePic:result .user.photoURL,
+        profilePic: result.user.photoURL,
         id:result.user.uid,
 
       }))
